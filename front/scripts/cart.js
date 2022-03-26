@@ -76,7 +76,7 @@ function displayItems(items) {
                       <div class="cart__item__content__description">
                         <h2>${item.name}</h2>
                         <p>${basketContent[i].itemColor}</p>
-                        <p id="item-price-${i}">${item.price}</p>
+                        <p>€<span id="item-price-${i}">${item.price}</span></p>
                       </div>
                       <div class="cart__item__content__settings">
                         <div class="cart__item__content__settings__quantity">
@@ -90,6 +90,8 @@ function displayItems(items) {
                     </div>
                 </article>
                 `
+                let quantityModify = document.querySelectorAll(".itemQuantity");
+                quantityModify[i].addEventListener("change", displayTotalPrice); 
             };
         });
     };
