@@ -18,6 +18,12 @@ function emailvalidation(emailval) {
     return emailreg.test(emailval);
 }
 
+function namevalidation(nameval) {
+    const rename = "^[a-zA-Z ,.'-]+$";
+    var namereg = new RegExp(rename)
+    return namereg.test(nameval);
+}
+
 function formValidation() {
     let emptyInput = 0;
     inputArray.forEach(input => {
@@ -37,6 +43,22 @@ function formValidation() {
         emailInput.classList.remove('highlight')
     }
     
+    if (!namevalidation(firstNameInput.value)) {
+        firstNameInput.classList.add('highlight')
+        alert('Please input correct first name!')
+        return false
+    } else {
+        firstNameInput.classList.remove('highlight')
+    }
+
+    if (!namevalidation(lastNameInput.value)) {
+        lastNameInput.classList.add('highlight')
+        alert('Please input correct last name!')
+        return false
+    } else {
+        lastNameInput.classList.remove('highlight')
+    }
+
     if (emptyInput > 0) {
         alert('Please fill all highlighted fields!')
         return false
