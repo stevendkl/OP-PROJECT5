@@ -80,6 +80,17 @@ function displayItem(item) {
               itemQuantity: Number(quantitySelect.value)              
             };            
 
+            //Combine quantities of the same products
+            for(var i =0; i<basketContent.length; i++)
+            {
+              var keyTag = basketContent[i].itemTag;
+              var keyColor = basketContent[i].itemColor;
+              if (productAdd.itemTag == keyTag && productAdd.itemColor == keyColor) {
+                productAdd.itemQuantity += basketContent[i].itemQuantity
+                basketContent.splice(i, 1);
+              }
+            }
+
             basketContent.push(productAdd);
             localStorage.setItem('productcart', JSON.stringify(basketContent));
 
