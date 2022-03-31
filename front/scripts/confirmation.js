@@ -1,23 +1,26 @@
 // DOM ELEMENTS
 const orderSummary = document.querySelector('#orderId');
+const orderError = document.querySelector('.confirmation');
 
-const orderDetails = JSON.parse(localStorage.getItem('order'))
+const urlSearchParams = new URLSearchParams(window.location.search);
+const params = Object.fromEntries(urlSearchParams.entries());
+console.log(params)
+const id = params.orderId;
 
 function confirmOrder() {
-    if (localStorage.getItem('order')) {
-        orderSummary.textContent = orderDetails.orderId;
-        clearLocalStorage('productcart', 'order');        
+    if (localStorage.getItem('productcart')) {
+        orderSummary.textContent = id;
+        clearLocalStorage('productcart');        
     } else {
-        orderSummary.innerHTML = 
+        orderError.innerHTML = 
         `        
         <p align="center">There was an error processing your request.</p>
         `
     }
 }
 
-function clearLocalStorage(productcart, order) {
-    localStorage.removeItem(productcart);
-    localStorage.removeItem(order);
+function clearLocalStorage(productcart) {
+    localStorage.removeItem(productcart);    
 }
 
 confirmOrder();

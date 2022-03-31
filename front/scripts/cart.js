@@ -222,8 +222,7 @@ async function placeOrder(event) {
                 })
             })
             .then(response => response.json())
-            .then(response => localStorage.setItem('order', JSON.stringify(response)))
-            .then(() => window.location.href = `confirmation.html`)
+            .then(response => window.location.href = `confirmation.html?orderId=${response.orderId}`)
             .catch(error => console.log(error))
     } else {
         return
